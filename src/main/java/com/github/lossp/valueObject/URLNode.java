@@ -5,10 +5,25 @@ import java.util.Date;
 public class URLNode {
     // 代表地址
     private String url;
-    // 表示标题
-    private String header;
     // 表示协议
     private String protocol;
+    // 表示请求方式
+    private String method;
+
+    public URLNode(String protocol, String url, String method) {
+        this.protocol = protocol;
+        this.url = url;
+        this.method = method;
+
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
 
     private long date;
 
@@ -18,14 +33,6 @@ public class URLNode {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
     }
 
     public String getProtocol() {
