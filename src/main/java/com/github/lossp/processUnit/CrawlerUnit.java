@@ -1,5 +1,7 @@
 package com.github.lossp.processUnit;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.lossp.factory.URLFactory;
 import com.github.lossp.factory.URLNodeByGetMethodFactory;
 import com.github.lossp.valueObject.URLNode;
@@ -26,8 +28,13 @@ public class CrawlerUnit implements Runnable {
             final Request request = okHttpClientBuilder("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
             Call call = okHttpClient.newCall(request);
             Response response = call.execute();
+            String result = response.body().string();
+            JSONObject jsonObject = JSON.parseObject(result);
+            System.out.println(jsonObject);
+            String paging = jsonObject.getString("paging");
+            String totals = JSON.parseObject(paging).getString("totals");
+            System.out.println("=========== " + totals);
 
-            System.out.println(response);
         } catch (IOException e) {
             e.printStackTrace();
         }
