@@ -9,8 +9,9 @@ import okhttp3.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.*;
 
-public class CrawlerUnit implements Runnable {
+public class CrawlerUnit<T> implements Callable<T> {
     private List<URLNode> urls;
     private OkHttpClient okHttpClient;
 
@@ -23,7 +24,7 @@ public class CrawlerUnit implements Runnable {
     }
 
     @Override
-    public void run() {
+    public T call() {
         try {
             final Request request = okHttpClientBuilder("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
             Call call = okHttpClient.newCall(request);
@@ -33,10 +34,10 @@ public class CrawlerUnit implements Runnable {
             System.out.println(jsonObject);
             String paging = jsonObject.getString("paging");
             String totals = JSON.parseObject(paging).getString("totals");
-            System.out.println("=========== " + totals);
-
+            return (T) totals;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -48,9 +49,18 @@ public class CrawlerUnit implements Runnable {
     }
 
     public static void main(String[] args) {
-        URLFactory<URLNode> factory = new URLNodeByGetMethodFactory();
-        URLNode urlNode = factory.createInstance("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
-        Thread thread = new Thread(new CrawlerUnit(urlNode));
-        thread.start();
+        try {
+            URLFactory<URLNode> factory = new URLNodeByGetMethodFactory();
+            URLNode urlNode = factory.createInstance("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
+            FutureTask<Integer> futureTask = new FutureTask(new CrawlerUnit(urlNode));
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.submit(futureTask);
+            System.out.println("thread" + futureTask.get());
+            executorService.shutdown();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
