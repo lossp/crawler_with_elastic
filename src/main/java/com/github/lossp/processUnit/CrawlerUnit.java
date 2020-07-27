@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.lossp.factory.URLFactory;
 import com.github.lossp.factory.URLNodeByGetMethodFactory;
+import com.github.lossp.utils.HttpRequestBuilder;
 import com.github.lossp.valueObject.URLNode;
 import okhttp3.*;
 import java.io.IOException;
@@ -14,9 +15,11 @@ import java.util.concurrent.*;
 public class CrawlerUnit<T> implements Callable<T> {
     private List<URLNode> urls;
     private OkHttpClient okHttpClient;
+    private HttpRequestBuilder httpRequestBuilder = new HttpRequestBuilder();
 
     public CrawlerUnit(List<URLNode> urls) {
         this.urls = urls;
+        this.okHttpClient = new OkHttpClient();
     }
 
     public CrawlerUnit(URLNode url) {
@@ -26,7 +29,7 @@ public class CrawlerUnit<T> implements Callable<T> {
     @Override
     public T call() {
         try {
-            final Request request = okHttpClientBuilder("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
+            final Request request = httpRequestBuilder.getRequestBuilder("https://www.zhihu.com/api/v4/members/excited-vczh/followers");
             Call call = okHttpClient.newCall(request);
             Response response = call.execute();
             String result = response.body().string();
@@ -39,13 +42,6 @@ public class CrawlerUnit<T> implements Callable<T> {
             e.printStackTrace();
             return null;
         }
-    }
-
-
-    private Request okHttpClientBuilder(String url) {
-        this.okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder().url(url).get().build();
-        return request;
     }
 
     public static void main(String[] args) {
