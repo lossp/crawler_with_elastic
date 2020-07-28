@@ -7,7 +7,8 @@ An java crawler project with elastic_search
 - [ ] implement the project with basic code
 - [ ] rebuild the project
 - [ ] achievement of algorithms (BFS DFS) - the tree structure is a binary search tree
-- [ ] Map and reduce(well, technically speaking, this is not Map-And-Reduce, for Map-And-Reduce is based on Stream. This one here is just task distribution)
+- [x] Map and reduce(well, technically speaking, this is not Map-And-Reduce, for Map-And-Reduce is based on Stream. This one here is just task distribution)
+- [ ] AOP (All the components have to put together, that`s where aop comes in.)
 
 ## Map and Reduce
 The whole idea of this zhihu-crawler is that use the design of Map And Reduce, which will be
