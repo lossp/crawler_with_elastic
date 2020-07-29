@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 
 public class PersonalHomePageCrawlerUnit extends AbstractCrawlerUnit<Integer> {
+    private static final String FOLLOWER_CLASS_NAME = ".NumberBoard-itemValue";
     public PersonalHomePageCrawlerUnit(URLNode page) {
         super(page);
     }
