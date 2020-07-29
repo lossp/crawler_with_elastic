@@ -1,12 +1,12 @@
 package com.github.lossp.factory;
 
-import com.github.lossp.processUnit.CrawlerUnit;
+import com.github.lossp.processUnit.AbstractCrawlerUnit;
+import com.github.lossp.processUnit.PersonalHomePageCrawlerUnit;
+import com.github.lossp.valueObject.URLNode;
 
-import java.util.ArrayList;
-
-public class CrawlerFactory implements Factory<CrawlerUnit> {
+public class CrawlerFactory implements Factory<AbstractCrawlerUnit> {
     @Override
-    public CrawlerUnit createInstance() {
-        return new CrawlerUnit(new ArrayList<>());
+    public AbstractCrawlerUnit createInstance(String protocol, String url, String method) {
+        return new PersonalHomePageCrawlerUnit(new URLNode(protocol, url, method));
     }
 }
