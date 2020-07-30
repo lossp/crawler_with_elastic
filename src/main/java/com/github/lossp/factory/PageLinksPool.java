@@ -31,4 +31,8 @@ public class PageLinksPool {
     public URLNode poll() {
         return this.blockingQueue.poll();
     }
+
+    public boolean isEmpty() {
+        return blockingQueue.isEmpty();
+    }
 }
