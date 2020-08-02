@@ -3,21 +3,20 @@ package com.github.lossp.processUnit;
 import com.github.lossp.factory.URLNodeByGetMethodFactory;
 import com.github.lossp.utils.NumberParser;
 import com.github.lossp.valueObject.URLNode;
+import okhttp3.Call;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
-public class PersonalHomePageCrawlerUnit extends AbstractCrawlerUnit<Integer> {
+public class PersonalHomePageCrawlerUnit implements Callable<Integer> {
     private static final String FOLLOWER_CLASS_NAME = ".NumberBoard-itemValue";
+    private final URLNode page;
     public PersonalHomePageCrawlerUnit(URLNode page) {
-        super(page);
+        this.page = page;
     }
     @Override
     public Integer call() {

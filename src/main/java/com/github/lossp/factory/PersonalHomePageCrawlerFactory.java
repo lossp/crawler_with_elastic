@@ -4,9 +4,9 @@ import com.github.lossp.processUnit.AbstractCrawlerUnit;
 import com.github.lossp.processUnit.PersonalHomePageCrawlerUnit;
 import com.github.lossp.valueObject.URLNode;
 
-public class CrawlerFactory implements Factory<AbstractCrawlerUnit> {
+public class PersonalHomePageCrawlerFactory implements Factory<PersonalHomePageCrawlerUnit> {
     @Override
-    public AbstractCrawlerUnit createInstance(String protocol, String url, String method) {
+    public PersonalHomePageCrawlerUnit createInstance(String protocol, String url, String method) {
         return new PersonalHomePageCrawlerUnit(new URLNode(protocol, url, method));
     }
 }
