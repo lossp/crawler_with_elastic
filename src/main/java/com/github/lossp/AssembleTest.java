@@ -21,8 +21,6 @@ public class AssembleTest {
         try {
             AssembleTest assembleTest = new AssembleTest();
             FutureTask<Integer> futureTask = new FutureTask<>(new FollowerListPageInfoCrawlerUnit(getMethodFactory.createInstance("https://www.zhihu.com/people/zhang-jia-wei/followers")));
-
-//            FollowerListCrawlerUnit followerListCrawlerUnit = new FollowerListCrawlerUnit(getMethodFactory.createInstance(""));
             FetchPageUrlUnit fetchPageUrlUnit = new FetchPageUrlUnit(pageLinksPool);
 
             FollowerListCrawlerUnit followerListCrawlerUnit = new FollowerListCrawlerUnit(pageLinksPool);
@@ -33,9 +31,6 @@ public class AssembleTest {
                 pageLinksPool.put(getMethodFactory.createInstance(url));
             }
             assembleTest.executorService.submit(followerListCrawlerUnit);
-
-//            Thread thread = new Thread(fetchPageUrlUnit);
-//            thread.start();
 
 
             System.out.println(result);
