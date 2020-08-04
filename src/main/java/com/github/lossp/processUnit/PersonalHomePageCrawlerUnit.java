@@ -3,7 +3,6 @@ package com.github.lossp.processUnit;
 import com.github.lossp.factory.URLNodeByGetMethodFactory;
 import com.github.lossp.utils.NumberParser;
 import com.github.lossp.valueObject.URLNode;
-import okhttp3.Call;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

@@ -1,6 +1,5 @@
 package com.github.lossp.factory;
 
-import com.github.lossp.processUnit.AbstractCrawlerUnit;
 import com.github.lossp.processUnit.PersonalHomePageCrawlerUnit;
 import com.github.lossp.valueObject.URLNode;
 

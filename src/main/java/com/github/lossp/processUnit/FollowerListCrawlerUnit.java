@@ -1,7 +1,6 @@
 package com.github.lossp.processUnit;
 
 import com.github.lossp.factory.PageLinksPool;
-import com.github.lossp.factory.URLNodeByGetMethodFactory;
 import com.github.lossp.valueObject.URLNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,9 +8,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
 
 /**
  * This class is not working well..

@@ -1,6 +1,5 @@
 package com.github.lossp.processUnit;
 
-import com.github.lossp.factory.PageLinksPool;
 import com.github.lossp.valueObject.URLNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
