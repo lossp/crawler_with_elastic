@@ -1,8 +1,8 @@
 package com.github.lossp;
 
+import com.github.lossp.factory.LinksPool;
 import com.github.lossp.factory.PageLinksPool;
 import com.github.lossp.factory.URLNodeByGetMethodFactory;
-import com.github.lossp.processUnit.FetchPageUrlUnit;
 import com.github.lossp.processUnit.FollowerListCrawlerUnit;
 import com.github.lossp.processUnit.FollowerListPageInfoCrawlerUnit;
 
@@ -14,14 +14,14 @@ import java.util.concurrent.FutureTask;
 public class AssembleTest {
     private static URLNodeByGetMethodFactory getMethodFactory = new URLNodeByGetMethodFactory();
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
-    private static PageLinksPool pageLinksPool = PageLinksPool.getInstance();
+    private static LinksPool pageLinksPool = PageLinksPool.getInstance();
     private static final String baseUrl = "https://www.zhihu.com/people/zhang-jia-wei/followers";
 
     public static void main(String[] args) {
         try {
+
             AssembleTest assembleTest = new AssembleTest();
             FutureTask<Integer> futureTask = new FutureTask<>(new FollowerListPageInfoCrawlerUnit(getMethodFactory.createInstance("https://www.zhihu.com/people/zhang-jia-wei/followers")));
-            FetchPageUrlUnit fetchPageUrlUnit = new FetchPageUrlUnit(pageLinksPool);
 
             FollowerListCrawlerUnit followerListCrawlerUnit = new FollowerListCrawlerUnit(pageLinksPool);
             assembleTest.executorService.submit(futureTask);

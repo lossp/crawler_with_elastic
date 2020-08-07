@@ -1,6 +1,7 @@
 package com.github.lossp.processUnit;
 
 import com.github.lossp.constants.CssClassNameSelector;
+import com.github.lossp.factory.LinksPool;
 import com.github.lossp.factory.PageLinksPool;
 import com.github.lossp.valueObject.URLNode;
 import org.jsoup.Jsoup;
@@ -19,7 +20,7 @@ import java.io.IOException;
 public class FollowerListCrawlerUnit extends AbstractCrawlerUnit<String> {
     private static String userLinkClassName = CssClassNameSelector.getUserLinkClassName();;
 
-    public FollowerListCrawlerUnit(PageLinksPool pageLinksPool) { super(pageLinksPool); }
+    public FollowerListCrawlerUnit(LinksPool pageLinksPool) { super(pageLinksPool); }
 
     @Override
     public String call() {
