@@ -5,7 +5,7 @@ public final class CssClassNameSelector {
     private static final String PAGE_NUMBER_CLASS_NAME = ".Pagination>button";
     private static final String USER_PAGE_PROFILE = ".ProfileHeader-contentBody";
 
-    private static String getUserPageProfile() {
+    public static String getUserPageProfile() {
         return USER_PAGE_PROFILE;
     }
 
