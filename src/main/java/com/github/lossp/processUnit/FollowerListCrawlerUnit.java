@@ -17,10 +17,9 @@ import java.io.IOException;
  * Therefore, only 3 out of 20 users can I get at every single page.
  */
 public class FollowerListCrawlerUnit extends AbstractCrawlerUnit<String> {
+    private static String userLinkClassName = CssClassNameSelector.getUserLinkClassName();;
 
-    public FollowerListCrawlerUnit(PageLinksPool pageLinksPool) {
-        super(pageLinksPool);
-    }
+    public FollowerListCrawlerUnit(PageLinksPool pageLinksPool) { super(pageLinksPool); }
 
     @Override
     public String call() {
@@ -29,7 +28,7 @@ public class FollowerListCrawlerUnit extends AbstractCrawlerUnit<String> {
                 URLNode urlNode = pageLinksPool.poll();
                 Document document = Jsoup.connect(urlNode.getUrl()).get();
                 // TODO problem is serious, only three users per page, why?
-                Elements elements = document.select(CssClassNameSelector.getUserLinkClassName());
+                Elements elements = document.select(userLinkClassName);
                 for (Element element:elements) {
                     if (element.hasText()) {
                         System.out.println(element);

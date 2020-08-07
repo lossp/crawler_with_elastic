@@ -12,16 +12,15 @@ import java.util.concurrent.Callable;
 
 public class FollowerListPageInfoCrawlerUnit implements Callable<Integer> {
     private final URLNode urlNode;
+    private static String pageNumberClassName = CssClassNameSelector.getPageNumberClassName();
 
-    public FollowerListPageInfoCrawlerUnit(URLNode urlNode) {
-        this.urlNode = urlNode;
-    }
+    public FollowerListPageInfoCrawlerUnit(URLNode urlNode) { this.urlNode = urlNode; }
 
     @Override
     public Integer call() {
         try {
             Document document = Jsoup.connect(urlNode.getUrl()).get();
-            Elements elements = document.select(CssClassNameSelector.getPageNumberClassName());
+            Elements elements = document.select(pageNumberClassName);
             // the total number of pages is the last second one.
             Element pageElement = elements.get(elements.size() - 2);
             System.out.println("the total number of pages is " + pageElement.text());
