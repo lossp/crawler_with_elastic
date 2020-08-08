@@ -1,5 +1,7 @@
 package com.github.lossp.processUnit;
 
+import com.github.lossp.constants.CssClassNameSelector;
+import com.github.lossp.factory.LinksPool;
 import com.github.lossp.factory.PageLinksPool;
 import com.github.lossp.valueObject.URLNode;
 import org.jsoup.Jsoup;
@@ -16,11 +18,9 @@ import java.io.IOException;
  * Therefore, only 3 out of 20 users can I get at every single page.
  */
 public class FollowerListCrawlerUnit extends AbstractCrawlerUnit<String> {
-    private final static String USER_LINK_CLASS_NAME = ".UserLink-link";
+    private static String userLinkClassName = CssClassNameSelector.getUserLinkClassName();;
 
-    public FollowerListCrawlerUnit(PageLinksPool pageLinksPool) {
-        super(pageLinksPool);
-    }
+    public FollowerListCrawlerUnit(LinksPool pageLinksPool) { super(pageLinksPool); }
 
     @Override
     public String call() {
@@ -29,7 +29,7 @@ public class FollowerListCrawlerUnit extends AbstractCrawlerUnit<String> {
                 URLNode urlNode = pageLinksPool.poll();
                 Document document = Jsoup.connect(urlNode.getUrl()).get();
                 // TODO problem is serious, only three users per page, why?
-                Elements elements = document.select(USER_LINK_CLASS_NAME);
+                Elements elements = document.select(userLinkClassName);
                 for (Element element:elements) {
                     if (element.hasText()) {
                         System.out.println(element);

@@ -9,6 +9,7 @@ An java crawler project with elastic_search
 - [ ] achievement of algorithms (BFS DFS) - the tree structure is a binary search tree
 - [ ] Map and reduce(well, technically speaking, this is not Map-And-Reduce, for Map-And-Reduce is based on Stream. This one here is just task distribution)
 - [ ] Blocking Queue(use blocking queue to store the urls, as producer.  Thread, on the other hand, performances like consumer)
+- [ ] process single follower page information
 
 ## Map and Reduce
 The whole idea of this zhihu-crawler is that use the design of Map And Reduce, which will be
