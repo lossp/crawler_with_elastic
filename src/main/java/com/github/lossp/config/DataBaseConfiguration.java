@@ -22,7 +22,7 @@ public class DataBaseConfiguration {
     private static ProcessEngine build() {
         ProcessEngineConfiguration configuration = new StandaloneProcessEngineConfiguration()
                 // nullCatalogMeansCurrent=true means tables will be created if they are not found
-                .setJdbcUrl("jdbc:mysql://localhost:3306/testflow?useUnicode=true&characterEncoding=utf8&autoReconnect=true&nullCatalogMeansCurrent=true")
+                .setJdbcUrl("jdbc:mysql://localhost:3306/elasticsearch?useUnicode=true&characterEncoding=utf8&autoReconnect=true&nullCatalogMeansCurrent=true")
                 .setJdbcUsername("root")
                 .setJdbcPassword("formylocal")
                 .setJdbcDriver("com.mysql.cj.jdbc.Driver")
@@ -30,5 +30,10 @@ public class DataBaseConfiguration {
 
         ProcessEngine processEngine = configuration.buildProcessEngine();
         return processEngine;
+    }
+
+    public static void main(String[] args) {
+        ProcessEngine processEngine = DataBaseConfiguration.getProcessEngine();
+        
     }
 }
