@@ -1,0 +1,20 @@
+<definitions
+        xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:flowable="http://flowable.org/bpmn"
+        targetNamespace="Examples">
+
+    <process id="crawlerProcess" name="My First Process">
+        <!--开始流程，为空节点-->
+        <startEvent id="theStart" />
+        <!--sequence具体定义？？-->
+        <sequenceFlow id="frontPointProcess" sourceRef="theStart" targetRef="processFrontPoint" />
+
+        <userTask id="processFrontPoint">
+            <documentation>
+                process the user`s page, from which we gather followers` information. This process can
+                be understood as a prefix point.
+            </documentation>
+        </userTask>
+    </process>
+
+</definitions>

@@ -11,6 +11,9 @@ An java crawler project with elastic_search
 - [ ] Blocking Queue(use blocking queue to store the urls, as producer.  Thread, on the other hand, performances like consumer)
 - [ ] process single follower page information
 
+- [ ] add flow sequence to this program, which inquired flow framework
+- [ ] select the appropriate way to store the data, mysql seems to be ok;
+
 ## Map and Reduce
 The whole idea of this zhihu-crawler is that use the design of Map And Reduce, which will be
 processed by multiple threads of crawler, and combine all the data at the end of crawling.
